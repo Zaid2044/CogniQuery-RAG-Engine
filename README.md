@@ -6,81 +6,141 @@
 [![Groq](https://img.shields.io/badge/Inference%20by-Groq-green.svg)](https://groq.com/)
 [![Streamlit](https://img.shields.io/badge/Interface-Streamlit-orange.svg)](https://streamlit.io/)
 
-An advanced, conversational AI engine that allows you to "chat" with your documents. Built with a robust RAG (Retrieval-Augmented Generation) pipeline, CogniQuery provides fast, accurate, and context-aware answers from your PDFs, complete with source attribution to eliminate hallucinations.
+**Repository:** [CogniQuery-RAG-Engine](https://github.com/Zaid2044/CogniQuery-RAG-Engine)
+**Author:** MOHAMMED ZAID AHMED
+
+CogniQuery is a conversational AI engine that lets you **chat with your PDFs**. Powered by Retrieval-Augmented Generation (RAG), it gives accurate, source-grounded responses to your questions — with blazing fast inference via **Groq** and clean UX via **Streamlit**.
 
 ---
 
-## 🚀 The Problem
+## 🚨 The Problem
 
-Enterprises, legal teams, and researchers are drowning in data locked away in unstructured documents like PDFs and reports. Traditional keyword search is inefficient, time-consuming, and often fails to capture the semantic context of a query. This knowledge retrieval bottleneck costs time, money, and delays critical decision-making.
+Professionals and organizations deal with massive amounts of unstructured documents. Traditional keyword-based search is slow, context-blind, and ineffective when you need precise answers.
 
-## 💡 Our Solution: The RAG Architecture
+---
 
-CogniQuery solves this by implementing a state-of-the-art **Retrieval-Augmented Generation (RAG)** pipeline. This approach enhances Large Language Models (LLMs) by grounding them in factual knowledge from your documents, ensuring responses are accurate and trustworthy.
+## 💡 The Solution: RAG Architecture
 
-Here’s how it works:
-1.  **Ingestion & Indexing**: When a PDF is uploaded, it's broken down into smaller, meaningful text chunks.
-2.  **Vector Embeddings**: Each chunk is converted into a numerical representation (a vector) using the powerful `all-MiniLM-L6-v2` sentence-transformer model.
-3.  **Vector Store**: These vectors are stored in a highly efficient `FAISS` vector database, creating a searchable knowledge index.
-4.  **Retrieval & Generation**:
-    *   When you ask a question, it's also converted into a vector.
-    *   The FAISS database is searched to find the most semantically similar text chunks from the document.
-    *   These relevant chunks, along with your original question, are fed to a cutting-edge LLM (`Llama-3` via the lightning-fast **Groq API**).
-    *   The LLM generates a precise, human-like answer based **only** on the provided context.
+CogniQuery uses a **Retrieval-Augmented Generation pipeline** to connect language models with your document knowledge base.
 
-This architecture ensures answers are not just fluent but are also factually grounded in the source material, effectively eliminating the "hallucination" problem common in standalone LLMs.
+### 🧠 How It Works
 
-## 🛠️ Technology Stack
+1. **PDF Ingestion**
+   → Breaks down PDFs into structured, chunked text
+2. **Vector Embedding**
+   → Converts chunks into semantic vectors with `all-MiniLM-L6-v2`
+3. **FAISS Indexing**
+   → Stores embeddings in a fast, searchable vector store
+4. **Query & Answer**
+   → Queries are vectorized → relevant chunks retrieved
+   → Combined with your query and sent to **LLaMA 3 (8B)** via **Groq**
+   → Outputs natural, context-aware, and source-grounded responses
 
-*   **Backend & Logic:** Python, LangChain
-*   **Web Framework:** Streamlit
-*   **LLM Inference:** Groq API (Llama-3 8B)
-*   **Embedding Model:** `sentence-transformers/all-MiniLM-L6-v2` (via Hugging Face)
-*   **Vector Database:** `FAISS` (Facebook AI Similarity Search)
-*   **PDF Processing:** `PyMuPDF`
+✅ **No hallucinations**
+✅ **Fully local document context**
+✅ **Near-instant responses**
 
-## 🏁 Getting Started
+---
 
-### Prerequisites
+## 🛠️ Tech Stack
 
-*   Python 3.9+
-*   Git
-*   A [Groq API Key](https://console.groq.com/keys)
+* **Language:** Python
+* **Frontend:** Streamlit
+* **LLM Inference:** Groq (LLaMA 3 8B)
+* **RAG Framework:** LangChain
+* **Embeddings:** `sentence-transformers/all-MiniLM-L6-v2`
+* **Vector DB:** FAISS
+* **PDF Parsing:** PyMuPDF
 
-### Installation
+---
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/Zaid2044/CogniQuery-RAG-Engine.git
-    cd CogniQuery-RAG-Engine
-    ```
+## 📁 File Structure
 
-2.  **Create and activate a virtual environment:**
-    ```bash
-    # On Windows
-    python -m venv venv
-    venv\Scripts\activate
-    
-    # On MacOS/Linux
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
+```
+CogniQuery-RAG-Engine/
+├── app.py
+├── utils/
+│   ├── rag_pipeline.py
+│   └── pdf_loader.py
+├── .env
+├── requirements.txt
+├── README.md
+└── docs/
+    └── demo.png
+```
 
-3.  **Install the required dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+---
 
-4.  **Set up your environment variables:**
-    *   Create a file named `.env` in the root of the project directory.
-    *   Add your Groq API key to the `.env` file:
-      ```
-      GROQ_API_KEY="gsk_YourActualKeyFromGroq"
-      ```
+## ⚙️ Getting Started
 
-### Running the Application
+### 📦 Prerequisites
 
-Once the installation is complete, run the following command from your terminal:
+* Python 3.9+
+* Git
+* [Groq API Key](https://console.groq.com/keys)
+
+### 🔧 Installation
+
+```bash
+git clone https://github.com/Zaid2044/CogniQuery-RAG-Engine.git
+cd CogniQuery-RAG-Engine
+```
+
+#### Create & Activate Virtual Environment
+
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Mac/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+#### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### Configure API Key
+
+Create a `.env` file in the root:
+
+```env
+GROQ_API_KEY="gsk_your_actual_groq_key"
+```
+
+---
+
+## ▶️ Run the App
 
 ```bash
 streamlit run app.py
+```
+
+> Upload a PDF → Ask any question → Get contextual answers with source references.
+
+---
+
+## 📊 Demo
+
+<p align="center">
+  <img src="docs/demo.png" alt="CogniQuery Demo" width="750"/>
+</p>
+
+---
+
+## 🧩 Future Upgrades
+
+* Multi-file PDF support
+* Answer highlighting in source document
+* Support for image-based PDFs (OCR integration)
+* Export QA history
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
