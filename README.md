@@ -6,7 +6,7 @@
 [![Groq](https://img.shields.io/badge/Inference%20by-Groq-green.svg)](https://groq.com/)
 [![Streamlit](https://img.shields.io/badge/Interface-Streamlit-orange.svg)](https://streamlit.io/)
 
-**Repository:** [CogniQuery-RAG-Engine](https://github.com/Zaid2044/CogniQuery-RAG-Engine)
+**Repository:** [CogniQuery-RAG-Engine](https://github.com/Zaid2044/CogniQuery-RAG-Engine)  
 **Author:** MOHAMMED ZAID AHMED
 
 CogniQuery is a conversational AI engine that lets you **chat with your PDFs**. Powered by Retrieval-Augmented Generation (RAG), it gives accurate, source-grounded responses to your questions — with blazing fast inference via **Groq** and clean UX via **Streamlit**.
@@ -51,23 +51,6 @@ CogniQuery uses a **Retrieval-Augmented Generation pipeline** to connect languag
 * **Embeddings:** `sentence-transformers/all-MiniLM-L6-v2`
 * **Vector DB:** FAISS
 * **PDF Parsing:** PyMuPDF
-
----
-
-## 📁 File Structure
-
-```
-CogniQuery-RAG-Engine/
-├── app.py
-├── utils/
-│   ├── rag_pipeline.py
-│   └── pdf_loader.py
-├── .env
-├── requirements.txt
-├── README.md
-└── docs/
-    └── demo.png
-```
 
 ---
 
@@ -121,14 +104,6 @@ streamlit run app.py
 ```
 
 > Upload a PDF → Ask any question → Get contextual answers with source references.
-
----
-
-## 📊 Demo
-
-<p align="center">
-  <img src="docs/demo.png" alt="CogniQuery Demo" width="750"/>
-</p>
 
 ---
 
